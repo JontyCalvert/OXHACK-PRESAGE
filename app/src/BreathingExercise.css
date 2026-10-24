@@ -1,0 +1,91 @@
+.breathing-exercise {
+  display: grid;
+  min-height: 360px;
+  place-items: center;
+  padding: 24px 0;
+}
+
+.breathing-ring {
+  --progress: 0%;
+  position: relative;
+  display: grid;
+  width: min(72vw, 300px);
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 50%;
+  background: conic-gradient(
+    from -90deg,
+    #bd6b59 var(--progress),
+    #ead9ca var(--progress)
+  );
+  box-shadow: 0 18px 45px rgba(101, 67, 54, 0.16);
+}
+
+.breathing-ring::before {
+  position: absolute;
+  inset: 10px;
+  border-radius: 50%;
+  background: #fffaf4;
+  content: "";
+}
+
+.breathing-circle-content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  color: #3d2d29;
+  text-align: center;
+}
+
+.breathing-label {
+  color: #b85d4d;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.breathing-circle-content strong {
+  margin: 6px 0;
+  font-size: 4.5rem;
+  line-height: 1;
+}
+
+.breathing-circle-content small {
+  color: #927f75;
+}
+
+.breathing-ball {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  border: 3px solid #fffaf4;
+  border-radius: 50%;
+  background: #b85d4d;
+  box-shadow: 0 3px 10px rgba(101, 67, 54, 0.25);
+  transform: translate(-50%, -50%);
+}
+
+.phase-in .breathing-ring {
+  animation: breathe-in 4s ease-in-out infinite alternate;
+}
+
+.phase-hold .breathing-ring {
+  transform: scale(1.08);
+}
+
+.phase-out .breathing-ring {
+  animation: breathe-out 6s ease-in-out infinite alternate;
+}
+
+@keyframes breathe-in {
+  from { transform: scale(0.9); }
+  to { transform: scale(1.08); }
+}
+
+@keyframes breathe-out {
+  from { transform: scale(1.08); }
+  to { transform: scale(0.9); }
+}
